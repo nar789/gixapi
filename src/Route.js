@@ -1,3 +1,5 @@
+const { urlencoded } = require('body-parser');
+
 ;(function(){
 	module.exports=function(_g){
 
@@ -18,7 +20,7 @@
 
 
 			app.post('/api/info',(req,res) => {
-				const info = req.body.info;
+				const info = encodeURIComponent(req.body.info);
 				console.log('info = ' + info);
 				let qry = `UPDATE info SET info = '${info}' WHERE id = 1`;
 				try {
@@ -46,7 +48,7 @@
 							return;
 						}
 						if(rows.length > 0) {
-							const info = JSON.parse(rows[0].info); 
+							const info = decodeURIComponent(JSON.parse(rows[0].info));
 							console.log("str = " + JSON.stringify(info));
 							res.json(info);
 							return;
