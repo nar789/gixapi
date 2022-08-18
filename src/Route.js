@@ -48,7 +48,7 @@ const { urlencoded } = require('body-parser');
 							return;
 						}
 						if(rows.length > 0) {
-							const info = decodeURIComponent(JSON.parse(rows[0].info));
+							const info = JSON.parse(decodeURIComponent(rows[0].info));
 							console.log("str = " + JSON.stringify(info));
 							res.json(info);
 							return;
